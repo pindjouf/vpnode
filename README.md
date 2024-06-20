@@ -23,10 +23,11 @@ Simple script to add new users to my vpn "blazingly-fast".
 
 ## How it works
 
-Takes the last octet in your main config's IP Address i.e. `/etc/wireguard/wg0.conf` and replaces it with a random one.\
+Takes the last octet in your main config's IP Address i.e. `/etc/wireguard/wg0.conf` and replaces it with a random one.
+
 Then it makes a new file in that same directory with the newly generated IP and a filename of your choosing.
 
-Feel free to contribute if you feel the need.
+Feel free to contribute if you feel the need to.
 
 ## Roadmap / to-do list
 
