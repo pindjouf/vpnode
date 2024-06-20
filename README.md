@@ -1,5 +1,5 @@
 > [!WARNING]
-> Speaking of which it only works if your IP is 7 digits long, it still has a long way to go before being a nice polished product.
+> The script only works if your config's IP is 7 digits long, it still has a long way to go before being a nice polished product.
 
 # vpnode
 
