@@ -32,10 +32,6 @@ Feel free to contribute if you feel the need.
 
 - [ ] Add support for all IPv4 IP's
 
-## End notes
-
-This project was started to improve my programming skills and deepen my understanding of XOR and cryptography in general.
-
 ## Information
 
 Author: [pindjouf](https://github.com/pindjouf)
