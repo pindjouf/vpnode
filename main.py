@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
-import random, os
 
-new = input("Give a name your new .conf: ")
+with open("/home/pindjouf/mediaman.conf", 'r') as base_conf:
+    for line in base_conf:
+        if line.startswith("Address"):
+            string = line.strip()
+            full_ip = string.split()[2] # awk the 3rd column
+            cidr_index = full_ip.find('/')
 
-try:
-    with open("/etc/wireguard/wg0.conf", 'r') as base_conf:
-        with open(f"/etc/wireguard/{new}.conf", 'w') as new_conf:
-            for line in base_conf:
-                if line[:7] == "Address":
-                    string = line # "Grep" address line
-                    ip = list(string[10:])
-                    ip[9:10] = str(random.randint(1, 255))
-                    new_ip = ''.join(ip)
-                    new_conf.write(f"Address = {new_ip}")
-                else:
-                    new_conf.write(line)
+            ip = full_ip[:cidr_index]
+            cidr = full_ip[cidr_index:]
 
-except PermissionError:
-    print("[Permission Denied] Gotta use sudo my man...")
+            ip_parts = ip.split(".")
+            last_octet = int(ip_parts[3])
 
-finally:
-    os.system("clear")
-    print(f"/etc/wireguard/{new}.conf\nHas been created!")
+            if last_octet <= 254 and last_octet > 1:
+                last_octet += 1
+                ip_parts[3] = str(last_octet)
+                new_ip = ".".join(ip_parts)
+                print(new_ip)
