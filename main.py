@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-with open("/home/pindjouf/mediaman.conf", 'r') as base_conf:
+with open("/path/to/your/wg0.conf", 'r') as base_conf, open("/path/to/your/new.conf", 'w') as new_conf:
     for line in base_conf:
         if line.startswith("Address"):
             string = line.strip()
@@ -16,5 +16,7 @@ with open("/home/pindjouf/mediaman.conf", 'r') as base_conf:
             if last_octet <= 254 and last_octet > 1:
                 last_octet += 1
                 ip_parts[3] = str(last_octet)
-                new_ip = ".".join(ip_parts)
-                print(new_ip)
+                new_ip = ".".join(ip_parts) + cidr
+                new_conf.write(f"Address = {new_ip}\n")
+            continue
+        new_conf.write(line)
